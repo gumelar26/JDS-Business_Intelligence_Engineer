@@ -1,0 +1,9 @@
+venv
+jabar_geo_data_filter.py
+scripts/jds_data/metadata.md
+scripts/jds_data/indonesia-cities.json
+scripts/jds_data/jabar_geo.json
+*.ipynb
+*.pyc
+create_token.py
+jds_dashboard/fastapi_app/__pycache__
