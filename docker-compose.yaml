@@ -31,7 +31,6 @@ services:
       dockerfile: Dockerfile.dash
     image: mydash:latest
     depends_on:
-      - db
       - myapi
     ports:
       - '8085:8085'
