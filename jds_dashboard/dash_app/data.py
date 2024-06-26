@@ -3,7 +3,7 @@ import pandas as pd
 from dotenv import load_dotenv
 import requests
 
-from utils import discrete_background_color_bins
+from utils import discrete_background_color_bins, snake_to_title
 
 load_dotenv()
 
@@ -13,6 +13,7 @@ TOKEN = os.getenv("TOKEN")
 def data_jml_slb(col_chosen: str):
     url = f"{HOST_URL}/api/jds_jml_slb/tahun_ajaran?tahun_ajaran={col_chosen}"
     df = pd.read_json(url)
+    df.columns = [snake_to_title(c) for c in df.columns]
     return df
 
 def data_rasio_murid_guru() :
@@ -25,6 +26,7 @@ def data_rasio_murid_guru() :
         df = pd.DataFrame(response.json())
         df_selected = df[['nama_kabupaten_kota', 'rasio_murid_guru', 'tahun_ajaran']]
         pivot_df = df_selected.pivot(index='nama_kabupaten_kota', columns='tahun_ajaran', values='rasio_murid_guru').reset_index()
+        pivot_df.columns = [snake_to_title(c) for c in pivot_df.columns]
         
         pivot_data = pivot_df.to_dict('records')
        
@@ -44,6 +46,7 @@ def data_kepsek_guru_slb(col_chosen: str):
     
     if response.status_code == 200:
         df = pd.DataFrame(response.json())
+        df.columns = [snake_to_title(c) for c in df.columns]
         
         return df
     else:

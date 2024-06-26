@@ -56,8 +56,8 @@ app.layout = dbc.Container([
             html.P("Names:"),
             html.Div(
                 dcc.Dropdown(
-                    options=['jenis_kelamin', 'ijazah_tertinggi'], 
-                    value='jenis_kelamin',
+                    options=['Jenis Kelamin', 'Ijazah Tertinggi'], 
+                    value='Jenis Kelamin',
                     searchable=False,
                     placeholder="Pilih names",
                     id='dropdown-kepsek-guru-slb-2'),  
@@ -74,9 +74,9 @@ app.layout = dbc.Container([
 )
 def jml_slb(col_chosen : str):
     df = data_jml_slb(col_chosen=col_chosen)
-    fig = px.bar(df.sort_values(by='jumlah_sekolah'),
-                 x='nama_kabupaten_kota', y='jumlah_sekolah',
-                 color='jumlah_sekolah', title=f"Jumlah SLB untuk Tahun Ajaran {col_chosen}")
+    fig = px.bar(df.sort_values(by='Jumlah Sekolah'),
+                 x='Nama Kabupaten Kota', y='Jumlah Sekolah',
+                 color='Jumlah Sekolah', title=f"Jumlah SLB untuk Tahun Ajaran {col_chosen}")
     return fig
 
 @callback(
@@ -86,8 +86,8 @@ def jml_slb(col_chosen : str):
 )
 def kepsek_guru_slb(col_chosen: str, names: str) :
     df = data_kepsek_guru_slb(col_chosen=col_chosen)
-    fig = px.pie(df[df['tahun'] == col_chosen],
-                 values='jumlah_kepsek_guru', names=names)
+    fig = px.pie(df[df['Tahun'] == col_chosen],
+                 values='Jumlah Kepsek Guru', names=names, hole=.3)
     
     return fig
 if __name__ == '__main__':

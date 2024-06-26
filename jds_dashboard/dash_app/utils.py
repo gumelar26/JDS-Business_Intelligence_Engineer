@@ -1,6 +1,10 @@
 import colorlover
 from dash import html
 
+def snake_to_title(snake_str):
+    components = snake_str.split('_')
+    return ' '.join(x.title() for x in components)
+
 def discrete_background_color_bins(df, n_bins=5, columns='all') :
     bounds = [i * (1.0 / n_bins) for i in range(n_bins + 1)]
     if columns == 'all' :
