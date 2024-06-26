@@ -6,4 +6,4 @@ scripts/jds_data/jabar_geo.json
 *.ipynb
 *.pyc
 create_token.py
-jds_dashboard/fastapi_app/__pycache__
+__pycache__

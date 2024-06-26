@@ -12,3 +12,24 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=jds_data
+  myapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    image: myapi:latest
+    ports:
+      - '8080:80'
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/jds_data
+      - SECRET_KEY=c6b6f9eb737ecd95e0128a93d394fdbae2cc0120b44d398a859c7c93b1628034
+      - ALGORITHMS=HS256
+  mydash:
+    build:
+      context: .
+      dockerfile: Dockerfile.dash
+    image: mydash:latest
+    ports:
+      - '8085:8085'
+    environment:
+      - TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3IiOiJhZG1pbiIsInJvbGUiOiJwZXJtYW5lbnRfdG9rZW4iLCJ0YXNrIjoiamRzX2JpIn0.SELUgDbqR7Wq7-wjFNkfRgQ19g9ZVlWuPTCp_kQei6w
+      - HOST_URL=http://myapi:80
